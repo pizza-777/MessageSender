@@ -2,7 +2,7 @@
 <div class="text-center">
 	<div>
 		<div>
-			<chart :chart-data="chartData" />
+			<chart :chart-data="chartData" :options="options" />
 		</div>
 	</div>
 	<div class="h3 text-info">{{ config.network }}</div>
@@ -11,20 +11,31 @@
 </template>
 <script>
 import chart from "./Chart.vue";
+//import checkbox from "./Checkbox.vue";
 import { netTransactions, config } from "../../api/netTransactions";
+import "chartjs-plugin-colorschemes";
 export default {
 	data() {
 		return {
 			chartData: null,
-			config
+			config,
+			options:{
+				plugins: {
+					colorschemes: {
+						scheme: 'brewer.PRGn11'
+					}
+				}
+			}
 		};
 	},
 	components: {
 		chart,
+		
 	},
 	mounted() {
 		setInterval(() => {
 			netTransactions(3).then((data) => {
+			
 				this.chartData = data;
 				//console.log(data.labels);
 			});

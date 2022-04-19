@@ -1,5 +1,6 @@
 <script>
 import { Line, mixins } from "vue-chartjs";
+import  'chartjs-plugin-colorschemes/src/colorschemes/colorschemes.office';
 const { reactiveProp } = mixins;
 
 export default {
@@ -14,6 +15,11 @@ export default {
           labels:{
             fontSize: 25
           }
+        },
+        plugins: {
+            colorschemes: {
+                scheme: 'tableau.Gray20'//https://nagix.github.io/chartjs-plugin-colorschemes/colorchart.html
+            }
         }
       },
     };
